@@ -16,4 +16,6 @@ RUN cd /drone-wall && go get && go build
 
 EXPOSE 8090
 
+ADD run.sh /
+
 CMD ["/run.sh"]
