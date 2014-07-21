@@ -4,10 +4,8 @@ REPOARG=""
 
 if [[ ! -z "$REPOS" ]]; then
   for REPO in $REPOS; do
-    REPOARG="${REPOARG}github.com/$REPO,"
+    REPOARG="${REPOARG}$REPO,"
   done
 fi
 
-# Start drone-wall
-exec drone-wall --datasource=/var/lib/drone/drone.sqlite --repos="${REPOARG%?}" --port=:8090
-
+exec drone-wall --datasource=/var/lib/drone/drone.sqlite --repos="${REPOARG%?}" --team="$TEAM" --port=:8090
