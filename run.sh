@@ -2,9 +2,21 @@
 
 REPOARG=""
 
-if [[ ! -z "$REPOS" ]]; then
-  for REPO in $REPOS; do
+if [[ -z "$GITHUB" && -z "$GITLAB" ]]; then
+  echo "Please set at least one of \$GITHUB or \$GITLAB" 
+  exit 1
+fi
+
+if [[ ! -z "$GITHUB" ]]; then
+  for REPO in $GITHUB; do
     REPOARG="${REPOARG}github.com/$REPO,"
+  done
+fi
+
+
+if [[ ! -z "$GITLAB" ]]; then
+  for REPO in $GITLAB; do
+    REPOARG="${REPOARG}gitlab.com/$REPO,"
   done
 fi
 
